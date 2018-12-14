@@ -35,6 +35,12 @@ Currently the only thing displayed for each day is the date. Note that I have
 used cards to wrap each to do item - [cards](https://getbootstrap.com/docs/4.1/components/card/) are a nice layout item where we can
 add lots of content
 
+Remember from the root of the project (i.e if you type pwd the last thing you
+should see is 2018-fall-javascript-2-project, and if you ls you should see
+package.json, past.css etc...) all you need to do is type `npm start` and you
+will then have a server that is synced with your browser. From there start
+editing the files with vscode.
+
 ### Show Details
 
 By default we do not want to show any detailed information about the toDos for a
@@ -60,7 +66,7 @@ We should also show the percent complete for all past days with a progress bar.
 
 To accomplish this there is a very powerful method on arrays called flatMap
 
-I've added the below to the bottom of past.js, open the console and looks at
+I've added the below to the bottom of past.js, open the console and look at
 what it is logging (hint, if you use map instead of flatMap, you would be
 getting an array of arrays)
 
