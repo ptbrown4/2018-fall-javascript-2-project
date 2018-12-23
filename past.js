@@ -62,13 +62,87 @@ function toDosHtml() {
 }
 
 function toDoHtml(toDo) {
+  var checked0 = toDo.toDos[0].done ? 'checked': ''
+  var checked1 = toDo.toDos[1].done ? 'checked': ''
+  var checked2 = toDo.toDos[2].done ? 'checked': ''
+  var checked3 = toDo.toDos[3].done ? 'checked': ''
   return `
     <div class="card">
-      <div class="card-body">
+      <span class="card-body">
         ${toDo.day}
-      </div>
+        <button type="button" class="btn btn-outline-info align-right" onclick="return showPastToDos('${toDo.day}')" data-toggle="button" aria-pressed="false" autocomplete="off">
+        Show ToDos
+        </button>
+      </span>
+      <span id="${toDo.day}" class="card-body hide-toDos">
+        <ol>
+          <li>
+          <span>
+          ${toDo.toDos[0].name}
+          </span>
+          <div class="form-check form-check-inline">
+          <input 
+            value="${toDo.toDos[0].done}" 
+            type="checkbox" 
+            class="form-check-input position-static" 
+            id="exampleCheck" 
+            ${checked0}>
+          </div>
+          </li>
+          <li>
+          <span>
+          ${toDo.toDos[1].name}
+          </span>
+          <div class="form-check form-check-inline">
+          <input 
+            value="${toDo.toDos[1].done}" 
+            type="checkbox" 
+            class="form-check-input position-static" 
+            id="exampleCheck" 
+            ${checked1}>
+          </div>
+          </li>
+          <li>
+          <span>
+          ${toDo.toDos[2].name}
+          </span>
+          <div class="form-check form-check-inline">
+          <input 
+            value="${toDo.toDos[2].done}" 
+            type="checkbox" 
+            class="form-check-input position-static" 
+            id="exampleCheck" 
+            ${checked2}>
+          </div>
+          </li>
+          <li>
+          <span>
+          ${toDo.toDos[3].name}
+          </span>
+          <div class="form-check form-check-inline">
+          <input 
+            value="${toDo.toDos[3].done}" 
+            type="checkbox" 
+            class="form-check-input position-static" 
+            id="exampleCheck" 
+            ${checked3}>
+          </div>
+          </li>
+        </ol>
+      </span>
     </div>
     `
+}
+
+function showPastToDos(day) {
+  var clickedOnDay = pastToDos.find(x => x.day === day);
+  var element = document.getElementById(clickedOnDay.day)
+  var classList = element.classList
+      if (clickedOnDay) {
+        classList.toggle("hide-toDos")
+      } else {
+        return false
+      }
 }
 
 function render() {
@@ -78,5 +152,5 @@ function render() {
 
 render()
 
-console.log(pastToDos.flatMap(toDo => toDo.toDos))
-console.log(pastToDos.flatMap(toDo => toDo.toDos.map(x => x.done)))
+// console.log(pastToDos.flatMap(toDo => toDo.toDos))
+// console.log(pastToDos.flatMap(toDo => toDo.toDos.map(x => x.done)))

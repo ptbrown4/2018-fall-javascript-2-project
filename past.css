@@ -3,3 +3,11 @@
   background-color: #009688;
   color: white;
 }
+
+.align-right {
+  float: right;
+}
+
+.hide-toDos {
+  display: none;
+}
