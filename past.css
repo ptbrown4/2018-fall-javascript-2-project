@@ -11,3 +11,17 @@
 .hide-toDos {
   display: none;
 }
+
+.btn-sm {
+  line-height: 0.5;
+}
+
+.priority-highlight {
+  background-color: rgba(251, 251, 3, 0.61);
+}
+
+.badge-success {
+  background-color: #00d80082;
+  color: #04040491;
+  font-size: 18px;
+}

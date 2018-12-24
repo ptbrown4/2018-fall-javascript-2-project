@@ -66,11 +66,23 @@ function toDoHtml(toDo) {
   var checked1 = toDo.toDos[1].done ? 'checked': ''
   var checked2 = toDo.toDos[2].done ? 'checked': ''
   var checked3 = toDo.toDos[3].done ? 'checked': ''
+  var priority0 = toDo.toDos[0].priorityTag
+  var priority1 = toDo.toDos[1].priorityTag
+  var priority2 = toDo.toDos[2].priorityTag
+  var priority3 = toDo.toDos[3].priorityTag
+  var highlight0 = toDo.toDos[0].highlight ? 'priority-highlight': ''
+  var highlight1 = toDo.toDos[1].highlight ? 'priority-highlight': ''
+  var highlight2 = toDo.toDos[2].highlight ? 'priority-highlight': ''
+  var highlight3 = toDo.toDos[3].highlight ? 'priority-highlight': ''
+  var findCommonPriority = pastToDos.find(t => t.toDos.priorityTag === toDo.toDos[0].priorityTag || toDo.toDos[1].priorityTag || toDo.toDos[2].priorityTag || toDo.toDos[3].priorityTag).value
+  var topPriorityTag = findCommonPriority === 'undefined' ? 'N/A': `${findCommonPriority}`
+  console.log(findCommonPriority)
   return `
     <div class="card">
       <span class="card-body">
-        ${toDo.day}
-        <button type="button" class="btn btn-outline-info align-right" onclick="return showPastToDos('${toDo.day}')" data-toggle="button" aria-pressed="false" autocomplete="off">
+        ${toDo.day} 
+        <span class="badge badge-success">Top Priority: ${findCommonPriority}</span>
+      <button type="button" class="btn btn-outline-info align-right" onclick="return showPastToDos('${toDo.day}')" data-toggle="button" aria-pressed="false" autocomplete="off">
         Show ToDos
         </button>
       </span>
@@ -88,6 +100,9 @@ function toDoHtml(toDo) {
             id="exampleCheck" 
             ${checked0}>
           </div>
+          <button type="button" class="btn btn-outline-dark btn-sm align-right ${highlight0}" data-toggle="button" aria-pressed="false" autocomplete="off">
+        ${priority0}
+        </button>
           </li>
           <li>
           <span>
@@ -101,6 +116,9 @@ function toDoHtml(toDo) {
             id="exampleCheck" 
             ${checked1}>
           </div>
+          <button type="button" class="btn btn-outline-dark btn-sm align-right ${highlight1}" data-toggle="button" aria-pressed="false" autocomplete="off">
+        ${priority1}
+        </button>
           </li>
           <li>
           <span>
@@ -114,6 +132,9 @@ function toDoHtml(toDo) {
             id="exampleCheck" 
             ${checked2}>
           </div>
+          <button type="button" class="btn btn-outline-dark btn-sm align-right ${highlight2}" data-toggle="button" aria-pressed="false" autocomplete="off">
+        ${priority2}
+        </button>
           </li>
           <li>
           <span>
@@ -127,12 +148,15 @@ function toDoHtml(toDo) {
             id="exampleCheck" 
             ${checked3}>
           </div>
+          <button type="button" class="btn btn-outline-dark btn-sm align-right ${highlight3}" data-toggle="button" aria-pressed="false" autocomplete="off">
+        ${priority3}
+        </button>
           </li>
         </ol>
       </span>
     </div>
     `
-}
+  }
 
 function showPastToDos(day) {
   var clickedOnDay = pastToDos.find(x => x.day === day);
