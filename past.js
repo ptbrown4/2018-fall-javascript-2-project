@@ -61,6 +61,25 @@ function toDosHtml() {
     .join("")
 }
 
+function find_duplicate_in_array(arra1) {
+  var object = {};
+  var result = [];
+  arra1.forEach(function (item) {
+    if(!object[item.priorityTag])
+        object[item.priorityTag] = 0;
+      object[item.priorityTag] += 1;
+  })
+  for (var prop in object) {
+     if(object[prop] >= 2) {
+         result.push(prop);
+     }
+  }
+  return result;
+}
+
+
+
+
 function toDoHtml(toDo) {
   var checked0 = toDo.toDos[0].done ? 'checked': ''
   var checked1 = toDo.toDos[1].done ? 'checked': ''
@@ -74,14 +93,12 @@ function toDoHtml(toDo) {
   var highlight1 = toDo.toDos[1].highlight ? 'priority-highlight': ''
   var highlight2 = toDo.toDos[2].highlight ? 'priority-highlight': ''
   var highlight3 = toDo.toDos[3].highlight ? 'priority-highlight': ''
-  var findCommonPriority = pastToDos.find(t => t.toDos.priorityTag === toDo.toDos[0].priorityTag || toDo.toDos[1].priorityTag || toDo.toDos[2].priorityTag || toDo.toDos[3].priorityTag).value
-  var topPriorityTag = findCommonPriority === 'undefined' ? 'N/A': `${findCommonPriority}`
-  console.log(findCommonPriority)
+  var topPriority = find_duplicate_in_array(toDo.toDos);
   return `
     <div class="card">
       <span class="card-body">
         ${toDo.day} 
-        <span class="badge badge-success">Top Priority: ${findCommonPriority}</span>
+        <span class="badge badge-success">Top Priority: ${topPriority}</span>
       <button type="button" class="btn btn-outline-info align-right" onclick="return showPastToDos('${toDo.day}')" data-toggle="button" aria-pressed="false" autocomplete="off">
         Show ToDos
         </button>
@@ -178,3 +195,8 @@ render()
 
 // console.log(pastToDos.flatMap(toDo => toDo.toDos))
 // console.log(pastToDos.flatMap(toDo => toDo.toDos.map(x => x.done)))
+
+// console.log(pastToDos.flatMap(toDo => toDo.toDos[0].priorityTag))
+
+
+
