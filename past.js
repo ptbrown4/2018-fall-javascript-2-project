@@ -105,7 +105,7 @@ function toDoHtml(toDo) {
         </button>
         </span>
         <div class="progress">
-        <div id="progress" class="progress-bar progress-bar-striped" role="progressbar" style="width: ${progressPercent}%" aria-valuenow="${progressPercent}" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: ${progressPercent}%" aria-valuenow="${progressPercent}" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
       <span id="${toDo.day}" class="card-body hide-toDos">
         <ol>

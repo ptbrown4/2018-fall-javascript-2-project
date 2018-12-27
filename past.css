@@ -25,3 +25,13 @@
   color: #04040491;
   font-size: 18px;
 }
+
+.progress-big {
+  height: 2.5rem;
+  border-radius: 1rem;
+  margin-bottom: 5rem;
+}
+
+.card {
+  margin-bottom: 1rem;
+}
