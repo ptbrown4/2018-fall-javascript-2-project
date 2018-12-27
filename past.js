@@ -94,15 +94,19 @@ function toDoHtml(toDo) {
   var highlight2 = toDo.toDos[2].highlight ? 'priority-highlight': ''
   var highlight3 = toDo.toDos[3].highlight ? 'priority-highlight': ''
   var topPriority = find_duplicate_in_array(toDo.toDos);
+  var progressPercent = (toDo.toDos.filter(t => t.done).length / toDo.toDos.length) * 100
   return `
     <div class="card">
       <span class="card-body">
         ${toDo.day} 
         <span class="badge badge-success">Top Priority: ${topPriority}</span>
-      <button type="button" class="btn btn-outline-info align-right" onclick="return showPastToDos('${toDo.day}')" data-toggle="button" aria-pressed="false" autocomplete="off">
+        <button type="button" class="btn btn-outline-info align-right" onclick="return showPastToDos('${toDo.day}')" data-toggle="button" aria-pressed="false" autocomplete="off">
         Show ToDos
         </button>
-      </span>
+        </span>
+        <div class="progress">
+        <div id="progress" class="progress-bar progress-bar-striped" role="progressbar" style="width: ${progressPercent}%" aria-valuenow="${progressPercent}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
       <span id="${toDo.day}" class="card-body hide-toDos">
         <ol>
           <li>
