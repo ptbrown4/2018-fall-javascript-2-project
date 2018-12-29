@@ -77,7 +77,11 @@ function find_duplicate_in_array(arra1) {
   return result;
 }
 
-
+function globalProgressBar() {
+  var globalDone = pastToDos.flatMap(toDo => toDo.toDos.map(x => x.done))
+  var globalProgress = (globalDone.filter(g => g).length / globalDone.length) * 100;
+  return `<div id="progress" class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: ${globalProgress}%" aria-valuenow="${globalProgress}" aria-valuemin="0" aria-valuemax="100"></div>`
+}
 
 
 function toDoHtml(toDo) {
@@ -193,6 +197,8 @@ function showPastToDos(day) {
 function render() {
   var element = document.getElementById("past-to-dos")
   element.innerHTML = toDosHtml()
+  var elementTwo = document.getElementById("progressBar")
+  elementTwo.innerHTML = globalProgressBar()
 }
 
 render()
